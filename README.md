@@ -13,6 +13,7 @@ If you see `qemu: uncaught target signal 11 (Segmentation fault) - core dumped`,
 git clone https://github.com/CYCU-CDLAB/2024-OperatingSystem-NachOS-Lab2.git nachos-lab2
 cd nachos-lab2
 # Build the docker image
+# You can reuse the Docker image from Lab1.
 docker build -t nachos .
 ```
 
@@ -28,18 +29,12 @@ Tested environments:
 cd NachOS-4.0
 # Run the docker container with the source code mounted
 docker run --rm -v $(pwd):/nachos -it --platform=linux/amd64 nachos
+
+# Do not execute "bash build_nachos_docker.sh" or "bash build_nachos.sh" at first.
+# There will be compilation errors (because the code in "threads" is not complete).
+# You should execute "bash build_nachos_docker.sh" or "bash build_nachos.sh" after you have finished the code.
 ```
 
-```bash
-# Inside the container, you should be in the code/test directory
-# Build nachos with the provided script
-bash build_nachos_docker.sh
-( or bash build_nachos.sh )
-# Build the target test
-make clean; make <test>
-# Run the test
-../build.linux/nachos -e <test>
-```
 
 ## Acknowledgment
 
