@@ -1,4 +1,4 @@
-# Nachos-4.0 for Operating System Course
+# Nachos-4.0 for Operating System Course 
 
 ## Before Starting Lab2
 
@@ -35,7 +35,7 @@ Tested environments:
 
 ```bash
 # Get into the directory if you are not in it
-cd NachOS-4.0
+cd nachos-lab2
 # Run the docker container with the source code mounted
 docker run --rm -v $(pwd):/nachos -it --platform=linux/amd64 nachos
 
