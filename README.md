@@ -15,6 +15,9 @@ In other words, if you haven't finished Lab1, it's fine - Lab2 is independent fr
 
 If you see `qemu: uncaught target signal 11 (Segmentation fault) - core dumped`, you may need to downgrade docker desktop to 4.24.2 or upgrade macos to Sonoma. See [here](https://github.com/docker/for-mac/issues/7172)
 
+## VM Ware
+You can reuse the virtual machine from Lab1, just need to git this repo.
+
 ### Build
 
 ```bash
