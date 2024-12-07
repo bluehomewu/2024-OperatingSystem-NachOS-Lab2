@@ -21,6 +21,9 @@
 
 enum SchedulerType {
         RR,
+        Priority,
+        SJF,
+        FCFS
 } ;
 
 /* Lab2 - Scheduling - End */

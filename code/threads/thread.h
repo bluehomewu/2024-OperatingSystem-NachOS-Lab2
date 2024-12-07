@@ -80,6 +80,18 @@ class Thread {
     // THEY MUST be in this position for SWITCH to work.
     int *stackTop;                         // the current stack pointer
     void *machineState[MachineStateSize];  // all registers except for stackTop
+    
+    /*
+    threads/threads.h class Thread
+    - 實作 1 class Thread 有 public 與 private 兩個權限區塊 。
+    因為原生的 nachOS Thread 並沒有 priority 、 burst time 、 start time 這些資訊
+    請同學在 private 區塊 建立上述變數 型別為 int 。
+    - 實作 2 ：承 上 由於變數權限為 private 因此需要相對應的函式才能 更改變數 與 讀取變數內容
+    請同學補齊大括號內之內容。
+    這些函式在測試用 function 會用到 所以函式名勿更改 。
+    換句話說，如果函式內容寫錯 就會無法賦予 thread 相關資訊 。
+    Ref: https://github.com/heisenberg0424/NTU_OS_FALL_2023/blob/31ee99f0d2b3480cc5f12bd4fa52a227468f0086/Report/OS_HW_2.md?plain=1#L384-L402
+    */
 
    public:
     Thread(char *debugName, int threadID);  // initialize a Thread
@@ -90,12 +102,12 @@ class Thread {
 
     /* Lab2 - Scheduling - Start */
 
-    int getBurstTime() {}
-    int getPriority() {}
-    int getStartTime() {}
-    void setBurstTime(int x) {}
-    void setStartTime(int x) {}
-    void setPriority(int x) {}
+    int getBurstTime() { return burstTime; }
+    int getPriority() { return priority; }
+    int getStartTime() { return startTime; }
+    void setBurstTime(int x) { burstTime = x; }
+    void setStartTime(int x) { startTime = x; }
+    void setPriority(int x) { priority = x; }
 
     /* Lab2 - Scheduling - End */
 
@@ -129,6 +141,9 @@ class Thread {
     /* Lab2 - Scheduling - Start */
     
     // Hint : Create variable at here.
+    int priority;
+    int burstTime;
+    int startTime;
 
     /* Lab2 - Scheduling - End */
 

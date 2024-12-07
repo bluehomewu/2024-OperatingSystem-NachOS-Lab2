@@ -204,7 +204,7 @@ int main(int argc, char **argv) {
 
         // Hint : You should write something in "if()" to implement a new bash option.
         //        At the same time, don't remove the "threadTestFlag" and "ASSERT()"
-        else if () {
+        else if (strcmp(argv[i], "-sche") == 0 ) {
             threadTestFlag = TRUE;
             ASSERT(i + 1 < argc) ;
 
@@ -214,6 +214,18 @@ int main(int argc, char **argv) {
                 cout << "===== RR =====" << endl ;
                 scheType = RR ;
             } // if()
+            else if (strcmp(argv[i + 1], "Priority") == 0) {
+                cout << "===== Priority =====" << endl ;
+                scheType = Priority ;
+            } // else if()
+            else if (strcmp(argv[i + 1], "SJF") == 0) {
+                cout << "===== SJF =====" << endl ;
+                scheType = SJF ;
+            } // else if()
+            else if (strcmp(argv[i + 1], "FCFS") == 0) {
+                cout << "===== FCFS =====" << endl ;
+                scheType = FCFS ;
+            } // else if()
             
             i++ ;
         } // else if()

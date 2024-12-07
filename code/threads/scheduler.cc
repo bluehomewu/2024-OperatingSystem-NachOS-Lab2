@@ -24,6 +24,94 @@
 #include "debug.h"
 #include "main.h"
 
+/* Lab2 - Scheduling - Start */
+/*
+- Priority 排程法： priority 越小優先級越高
+依 start time 先後次序 進行排序，時候未到的 thread 不能執行； priority 優先級高的先處理；
+priority 相同依 ID 由小至大依序處理
+- SJF 排程法：根據 burst time 進行排序
+依 start time 先後次序進行排序，時候未到的 thread 不能執行； burst time 小的先處理；
+burst time 相同依ID由小至大依序處理
+- FCFS 排程法：根據 start time 進行排序
+依 start time 先後次序 進行排序 時候未到的 thread 不能執行；
+start time 相同依 ID 由小至大依序處理
+
+由於此函式為 int 型別 因此我們規定
+如果 Thread a 與 Thread b 經過比較後 b 的執行優先級大於 a
+則 return 1 反之 return 1 。
+*/
+
+int PriorityCompare(Thread *a, Thread *b) {
+    if (a->getStartTime() < b->getStartTime()) {
+        return -1;
+    }
+    else if (a->getStartTime() > b->getStartTime()) {
+        return 1;
+    }
+    else {
+        if (a->getPriority() < b->getPriority()) {
+            return -1;
+        }
+        else if (a->getPriority() > b->getPriority()) {
+            return 1;
+        }
+        else {
+            if (a->getID() < b->getID()) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        }
+    }
+}
+
+int SJFCompare(Thread *a, Thread *b) {
+    if (a->getStartTime() < b->getStartTime()) {
+        return -1;
+    }
+    else if (a->getStartTime() > b->getStartTime()) {
+        return 1;
+    }
+    else {
+        if (a->getBurstTime() < b->getBurstTime()) {
+            return -1;
+        }
+        else if (a->getBurstTime() > b->getBurstTime()) {
+            return 1;
+        }
+        else {
+            if (a->getID() < b->getID()) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        }
+    }
+}
+
+int FCFSCompare(Thread *a, Thread *b) {
+    if (a->getStartTime() < b->getStartTime()) {
+        return -1;
+    }
+    else if (a->getStartTime() > b->getStartTime()) {
+        return 1;
+    }
+    else {
+        if (a->getID() < b->getID()) {
+            return -1;
+        }
+        else {
+            return 1;
+        }
+    }
+}
+
+
+/* Lab2 - Scheduling - End */
+
+
 //----------------------------------------------------------------------
 // Scheduler::Scheduler
 // 	Initialize the list of ready but not running threads.
@@ -187,8 +275,20 @@ Scheduler::Scheduler(SchedulerType type) {
             //             Line 227 (readyList = new SortedList<Thread *>(/*Your Compare Method*/);) will become :
             //             readyList = new SortedList<Thread *>( RRCompare );
 
-            case /* scheduler type */ :
-                readyList = new SortedList<Thread *>( /*Your Compare Method*/ );
+            // case /* scheduler type */ :
+            //     readyList = new SortedList<Thread *>( /*Your Compare Method*/ );
+            //     break;
+            
+            case Priority:
+                readyList = new SortedList<Thread *>( PriorityCompare );
+                break;
+            
+            case SJF:
+                readyList = new SortedList<Thread *>( SJFCompare );
+                break;
+
+            case FCFS:
+                readyList = new SortedList<Thread *>( FCFSCompare );
                 break;
         }
         toBeDestroyed = NULL;
